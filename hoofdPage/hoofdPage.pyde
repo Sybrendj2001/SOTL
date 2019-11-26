@@ -10,7 +10,7 @@ def setup():
     kaarten.setup(vraag)
     size(800,800)
 
-    
+    #hallo
             
 def draw():
     global page, ant
