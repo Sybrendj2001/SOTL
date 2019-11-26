@@ -1,14 +1,13 @@
-import kaarten, menu, antwoorden, personInfo
+import kaarten, menu, antwoorden, personInfo, modus
 
 def setup():
     global page, score, vraag, ant
     score = 0
-    page = "menu"
+    page = "modus"
     ant = "niets"
     vraag = 0
     personInfo.setup()
     kaarten.setup(vraag)
-    
     size(800,800)
 
     
@@ -29,6 +28,9 @@ def draw():
         
     elif page == "antwoorden":
         antwoorden.draw(ant)
+        
+    elif page == "modus":
+        modus.draw()
 
 
 
@@ -51,6 +53,7 @@ def mousePressed():
         ant = kaarten.mousePressed()
         if ant != "niets":
             page = "antwoorden"
+    #TODO: laat alle methodes hier hun input returnen als default
     if page == "antwoorden":
         ant1,page1 = antwoorden.mousePressed(ant,vraag)
         
@@ -59,6 +62,11 @@ def mousePressed():
         
         if page1 != None:
             page = page1
+            
+    if page == "modus":
+        pageTemp = modus.mousePressed()
+        if pageTemp != None:
+            page = pageTemp
     
 
     
