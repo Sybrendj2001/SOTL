@@ -1,17 +1,12 @@
 import personInfo
 
+def draw(mode):
     
-def draw():
-    
-
     
     i = 0
     
     textAlign(LEFT,CENTER)
-    
 
-    
-    fill(255)
     background(255)
     rect(499,199,202,134)
     rect(499,449,202,134)
@@ -36,5 +31,5 @@ def draw():
         q = q + 50
         s = s + 50
         i += 1
-        
-    
+    textAlign(RIGHT,CENTER)
+    text(str(mode),width-210,0,200,50)

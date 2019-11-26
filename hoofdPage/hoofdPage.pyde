@@ -1,26 +1,28 @@
 import kaarten, menu, antwoorden, personInfo, modus
 
 def setup():
-    global page, score, vraag, ant
+    global page, score, vraag, ant, mode
     score = 0
     page = "modus"
     ant = "niets"
     vraag = 0
+    mode = "123"
     personInfo.setup()
     kaarten.setup(vraag)
     size(800,800)
-
+    
     
             
 def draw():
-    global page, ant
+    global page, ant, mode
     
     if page == "menu":
-        menu.draw()
+        menu.draw(mode)
         imgKans = loadImage("achterkant_kans2.jpeg")
         imgStrijd = loadImage("achterkant_strijd2.jpeg")
         image(imgKans,500,200,200,132)
         image(imgStrijd,500,450,200,132)
+        
         
         
     elif page == "kans/kenniskaarten":
@@ -43,7 +45,7 @@ def isMouseWithinSpace(x,y,w,h):
     
     
 def mousePressed():
-    global score, page, vraag, kenniskaarten, ant
+    global score, page, vraag, kenniskaarten, ant, mode
     
     if isMouseWithinSpace(499,199,202,134) and page == "menu":
         page = "kans/kenniskaarten"
@@ -64,7 +66,7 @@ def mousePressed():
             page = page1
             
     if page == "modus":
-        pageTemp = modus.mousePressed()
+        pageTemp,mode = modus.mousePressed()
         if pageTemp != None:
             page = pageTemp
     

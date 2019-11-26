@@ -15,18 +15,9 @@ def new_background(r, g, b):
 def mousePressed():
     global m, font, textfont, scene
     if isMouseWithinSpace((width/4)-75, (height/2)-60, ((width/4)-75)+150, ((height/2)-60)+150):
-        new_background(0, 150, 100)
-        s1 = "Je hebt gekozen voor de volledige versie van het spel!"
-        s2 = "scores:"
-        fill(75)
-        text(s1, 130, 50 , 800, 300)
-        text(s2, 50, 75 , 130, 300)
-        return "menu"
+        mode = "volledige servie"
+        return "menu",mode
+    
     elif isMouseWithinSpace((width*3/4)-75, (height/2)-60, ((width*3/4)+75), ((height/2)-60)+150):
-        new_background(150, 0, 100)
-        s1 = "Je hebt gekozen voor een verkorte versie van het spel!"
-        s2 = "scores:"
-        fill(75)
-        text(s1, 130, 50 , 800, 300)
-        text(s2, 50, 75 , 130, 300)
-        return "menu"
+        mode = "verkorte versie"
+        return "menu",
