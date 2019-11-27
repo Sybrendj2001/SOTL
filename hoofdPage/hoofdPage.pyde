@@ -21,8 +21,14 @@ def draw():
         imgStrijd = loadImage("achterkant_strijd2.jpeg")
         image(imgKans,500,200,200,132)
         image(imgStrijd,500,450,200,132)
+#Hier wordt continue gecheckt of een speler al 100 punten heeft of meer
+        i = 0 
+        while i < len(personInfo.playerList):
+            if personInfo.playerList[i].wokeScore >= 100 or personInfo.playerList[i].litScore >= 100:
+                    page = "Eindpagina"
+            i += 1
         
-        
+#Hier worden de pagina's veranderd, wanneer de string van page gelijk is aan de naam van de nieuwe pagina.         
     elif page == "kans/kenniskaarten":
         kaarten.draw()
         
@@ -31,7 +37,9 @@ def draw():
         
     elif page == "modus":
         modus.draw()
-
+        
+    elif page == "Eindpagina":
+        Eindpagina.draw()
 
 
 def isMouseWithinSpace(x,y,w,h):
