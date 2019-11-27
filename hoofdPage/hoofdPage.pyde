@@ -66,9 +66,11 @@ def mousePressed():
             page = page1
             
     if page == "modus":
-        pageTemp,mode = modus.mousePressed()
+        
+        pageTemp,mode1 = modus.mousePressed()
         if pageTemp != None:
             page = pageTemp
-    
+        if mode1 != None:
+            mode = mode1
 
     
