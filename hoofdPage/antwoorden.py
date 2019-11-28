@@ -25,13 +25,14 @@ def mousePressed(ant,vraag):
     
     if isMouseWithinSpace(600,100,100,100):
         if ant == "right":
-            personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,3)
+            personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,3)
             
         else:
-            personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,-2)
+            personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,-2)
         
         page= "menu"
         ant = "niets"
+        personInfo.turnIncrement()
         
         kaarten.setup(vraag)
     
