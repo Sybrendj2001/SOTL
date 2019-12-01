@@ -13,8 +13,6 @@ def setup():
     kaarten.setup()
     kaartjes.setup()
     
-    print(kaartjes.kansEnKennis[0])
-    
     
 def draw():
     global page, ant, mode
