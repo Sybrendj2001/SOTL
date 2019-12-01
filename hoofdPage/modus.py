@@ -1,5 +1,5 @@
 def draw():
-    global m, font
+    fill(0)
     text("Speel de volledige versie", 130, 350 , 130, 300)
     text("Speel de verkorte versie", 530, 350 , 130, 300)
 
