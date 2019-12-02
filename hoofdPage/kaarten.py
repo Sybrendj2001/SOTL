@@ -67,13 +67,27 @@ def draw():
     if kaartjes.kansEnKennis[0] in kaartjes.kanskaarten:
         fill(0)
         text("kans",100,400)
-        text(str(kaartjes.kansEnKennis[0]),100,100)
+        text(str(kaartjes.kansEnKennis[0]),100,50,450,80)
         fill(255)
         rect((width/2)-50,600,100,50)
         fill(0)
         text("next",(width/2)-50,600,100,50)
-
     
+    
+    if kaartjes.kansEnKennis[0] in kaartjes.kansSpeciaal:
+        if len(kaartjes.kansEnKennis[0]) < 4:
+            fill(0)
+            text(kaartjes.kansEnKennis[0][0],100,50,450,80)
+            fill(255)
+            rect(300,300,150,150)
+            fill(0)
+            text("dobbelsteen",300,300,150,150)
+        
+        else:
+            fill(0)
+            text(kaartjes.kansEnKennis[0][0],100,50,450,80)
+            text(kaartjes.kansEnKennis[0][1],100,150,450,40)
+            text(kaartjes.kansEnKennis[0][2],100,200,450,40)
         
             
 def isMouseWithinSpace(x,y,w,h):

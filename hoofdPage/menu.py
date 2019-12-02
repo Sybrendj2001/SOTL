@@ -21,6 +21,7 @@ def draw(mode):
     
     s = 150
     q = 170
+    r = 190
     
     while  i < len(personInfo.playerList):
         n = personInfo.playerList[i].name
@@ -32,10 +33,12 @@ def draw(mode):
             
         fill(0)
         text("player " + str(i+1) + ": " + n,60,s,190,40)
-        text(str(p),60,q,190,40)
+        text(personInfo.playerList[i].role,60,q,190,40)
+        text(str(p),60,r,190,40)
         
-        q = q + 50
-        s = s + 50
+        q = q + 70
+        s = s + 70
+        r = r + 70
         i += 1
         
     textAlign(RIGHT,CENTER)

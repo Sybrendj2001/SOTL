@@ -1,7 +1,7 @@
 from random import shuffle
 
 def setup():
-    global kenniskaarten, kanskaarten, kansEnKennis
+    global kenniskaarten, kanskaarten, kansSpeciaal, kansEnKennis
     
     kenniskaarten = [["Welk jaar was het warmst in de tijd dat wij op aarde leven en het weer konden meten (1880)?","A = 2018","B = 2016","C = 2010","D = 2006","B"],
                      ["Welke 3 landen doen het meest aan milieuvriendelijkheid?","A = oostenrijk, zwitserland, denemarken","B = frankrijk, oostenrijk, zwitserland", "C = zwitserland, frankrijk, denemarken","D = frankrijk, zwitserland, denemarken","D"],
@@ -129,6 +129,6 @@ def setup():
     ["Je begint een restaurant. Kies:","Veganistisch restaurant","korean bbq restaurant",[-4,-1],[5,-7]]
     ]
     
-    kansEnKennis = kanskaarten + kenniskaarten
+    kansEnKennis = kanskaarten + kenniskaarten + kansSpeciaal
     
     shuffle(kansEnKennis)
