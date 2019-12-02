@@ -181,14 +181,16 @@ def mousePressed():
         if isMouseWithinSpace(((width/2)-50),600,100,50):
             page = "menu"
             if personInfo.playerList[0].role == "woke":
-                personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,kaartjes.kansEnKennis[0][1])
+                personInfo.scoreChangeperson(Info.currentPlayer,personInfo.currentPlayer.role,kaartjes.kansEnKennis[0][1])
             else:
-                personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,kaartjes.kansEnKennis[0][2])
+                personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,kaartjes.kansEnKennis[0][2])
                 
             l = kaartjes.kansEnKennis[0]
     
             kaartjes.kansEnKennis.append(l)
             kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
+            
+            personInfo.turnIncrement()
         
     if ant != "niets":
         page = "antwoorden"

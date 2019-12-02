@@ -60,9 +60,17 @@ def checkAmount(string):
     else:
         checkAmount("The amount of players has to be at least 2 and at most 8.")
         
+#self-documenting cooooooooooooode
+def turnIncrement():
+    global turnCount, currentPlayer, playerList
+    print(currentPlayer.name)
+    turnCount += 1
+    #if turncount is higher than the amount of players, instead of letting it loop back to 0 (which takes valuable processing power!), we just take the modulo of the turncount and the amount of players for basically the same effect
+    currentPlayer = playerList[turnCount%len(playerList)]
+    
 
 def setup():
-    global playerList
+    global playerList, turnCount, currentPlayer
     #stop alle spelers in een lijst
     #intern worden de spelers geidentificeerd met hun positie in de lijst: speler 1 is dus playerList[0]
     playerList = []
@@ -70,6 +78,9 @@ def setup():
     checkAmount("How many players are there?")
     #alexa what does assign mean in dutch
     assignRoles()
+    turnCount = 0
+    currentPlayer = playerList[turnCount]
+    
     
 def draw():
     global playerList
