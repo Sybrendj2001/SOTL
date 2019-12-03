@@ -56,7 +56,7 @@ def checkAmount(string):
     if players >= 2 and players <= 8:
         for i in range (players):
             #geef elke speler een id, naam, rol, en zet de score op 0
-            playerList.append(Player(input("Player %i, type your name: "%(i+1)), 0, 0))
+            playerList.append(Player(input("Player %i, type your name: "%(i+1)), 0, 100))
     else:
         checkAmount("The amount of players has to be at least 2 and at most 8.")
         

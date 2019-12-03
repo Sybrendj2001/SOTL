@@ -17,12 +17,12 @@ def mousePressed():
     page = "modus"
     mode = None
     
-    if isMouseWithinSpace((width/4)-75, (height/2)-60,150,150):
+    if isMouseWithinSpace(125,340,150,150):
         mode = "volledige versie"
         page = "menu"
         return page,mode
     
-    elif isMouseWithinSpace((width*3/4)-75, (height/2)-60,150,150):
+    elif isMouseWithinSpace(225,340,150,150):
         mode = "verkorte versie"
         page = "menu"
         return page,mode

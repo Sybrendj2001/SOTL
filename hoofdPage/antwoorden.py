@@ -22,10 +22,15 @@ def mousePressed(ant):
     
     if isMouseWithinSpace(600,100,100,100):
         if ant == "right":
-            personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,3)
-            
+            if personInfo.currentPlayer.role == "lit":
+                personInfo.scoreChange(personInfo.currentPlayer,"lit",3)
+            else:
+                personInfo.scoreChange(personInfo.currentPlayer,"woke",-3)
         else:
-            personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,-2)
+            if personInfo.currentPlayer.role == "lit":
+                personInfo.scoreChange(personInfo.currentPlayer,"lit",-2)
+            else:
+                personInfo.scoreChange(personInfo.currentPlayer,"woke",2)
         
         l = kaartjes.kansEnKennis[0]
         

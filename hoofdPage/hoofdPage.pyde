@@ -3,7 +3,7 @@ import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina
 def setup():
     global page, ant, mode
     
-    size(800,800)
+    size(1600,900)
     
     ant = "niets"
     page = "modus"
@@ -26,7 +26,7 @@ def draw():
         
         j = 0
         while j < len(personInfo.playerList) and mode == "volledige versie":
-            if personInfo.playerList[j].wokeScore >= 100 or personInfo.playerList[j].litScore >= 100:
+            if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:
                 page = "Eindpagina"
             j += 1
         

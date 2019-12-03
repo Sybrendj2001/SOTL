@@ -180,10 +180,10 @@ def mousePressed():
     if kaartjes.kansEnKennis[0] in kaartjes.kanskaarten:
         if isMouseWithinSpace(((width/2)-50),600,100,50):
             page = "menu"
-            if personInfo.playerList[0].role == "woke":
-                personInfo.scoreChangeperson(Info.currentPlayer,personInfo.currentPlayer.role,kaartjes.kansEnKennis[0][1])
+            if personInfo.currentPlayer.role == "woke":
+                personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][1])
             else:
-                personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,kaartjes.kansEnKennis[0][2])
+                personInfo.scoreChange(personInfo.currentPlayer,"lit",kaartjes.kansEnKennis[0][2])
                 
             l = kaartjes.kansEnKennis[0]
     
