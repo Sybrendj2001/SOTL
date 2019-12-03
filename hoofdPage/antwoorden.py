@@ -1,17 +1,12 @@
-import kaarten, personInfo
+import kaarten, kaartjes, personInfo
 
-def draw(a):
-    global ant1
-    ant1 = a
-    
-    background(255)
+def draw(ant):
     
     kaarten.draw()
-    if a == "right":
-        text("You gave the right anwser",100,400,450,40)
-    elif a == "wrong":
-        text("You gave the wrong anwser",100,400,450,40)
-        
+    
+    text("you pressed the "+ ant +" anwser!",width/2-50,600)
+    
+    fill(255)
     rect(600,100,100,100)
     
 def isMouseWithinSpace(x,y,w,h):
@@ -19,9 +14,11 @@ def isMouseWithinSpace(x,y,w,h):
         return True
     else:
         return False
-
-def mousePressed(ant,vraag):
+    
+    
+def mousePressed(ant):
     page = "antwoorden"
+    
     
     if isMouseWithinSpace(600,100,100,100):
         if ant == "right":
@@ -30,10 +27,18 @@ def mousePressed(ant,vraag):
         else:
             personInfo.scoreChange(personInfo.currentPlayer,personInfo.currentPlayer.role,-2)
         
+        l = kaartjes.kansEnKennis[0]
+        
+        kaartjes.kansEnKennis.append(l)
+        
+        kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
+        
         page= "menu"
         ant = "niets"
         personInfo.turnIncrement()
         
-        kaarten.setup(vraag)
+        personInfo.turnIncrement()
+        
+        kaarten.setup()
     
     return ant, page
