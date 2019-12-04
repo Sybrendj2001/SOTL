@@ -1,13 +1,14 @@
 import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina
 
 def setup():
-    global page, ant, mode
+    global page, ant, mode, backImg
     
     size(1600,900)
     
     ant = "niets"
     page = "modus"
     mode = " "
+    backImg = loadImage("304659.jpg")
     
     personInfo.setup()
     kaarten.setup()
@@ -15,9 +16,10 @@ def setup():
     
     
 def draw():
-    global page, ant, mode
+    global page, ant, mode, backImg
     
     background(255)
+    image(backImg,0,0,1712,963)
     if page == "modus":
         modus.draw()
     
