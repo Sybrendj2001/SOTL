@@ -74,7 +74,7 @@ def draw(mode):
             oddN = oddN + 180
             oddR = oddR + 180
             oddP = oddP + 180
-            oddK - oddK + 180
+            oddK = oddK + 180
 
         i += 1
         
