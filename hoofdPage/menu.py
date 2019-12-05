@@ -97,5 +97,8 @@ def mousePressed():
     
     if isMouseWithinSpace(39,149,202,134):
         page = "kaarten"
+        
+    if isMouseWithinSpace(40,height-150,100,120):
+        page = "spelregels"
     
     return page

@@ -1,4 +1,4 @@
-import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina
+import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels
 
 def setup():
     global page, ant, mode, backImg
@@ -31,7 +31,9 @@ def draw():
             if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:
                 page = "Eindpagina"
             j += 1
-        
+    if page == "spelregels":
+        spelregels.draw(mode)
+    
     if page == "kaarten":
         kaarten.draw()
     
