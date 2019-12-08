@@ -4,10 +4,15 @@ def draw(ant):
     
     kaarten.draw()
     
-    text("you pressed the "+ ant +" anwser!",width/2-50,600)
+    a = kaartjes.kansEnKennis[0][-1]
     
-    fill(255)
-    rect(600,100,100,100)
+    if ant == "wrong":
+        text("Je hebt het verkeerde antwoord aangeklinkt! Het juiste antwoord is " + a,width/2-225,600,450,40)
+    else:
+        text("Je hebt het juiste antwoord aangeklikt!",width/2-225,600,450,40)
+    
+    imgBack = loadImage("back.png")
+    image(imgBack,1250,186,100,100)
     
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
@@ -20,7 +25,7 @@ def mousePressed(ant):
     page = "antwoorden"
     
     
-    if isMouseWithinSpace(600,100,100,100):
+    if isMouseWithinSpace(1250,186,100,100):
         if ant == "right":
             if personInfo.currentPlayer.role == "lit":
                 personInfo.scoreChange(personInfo.currentPlayer,"lit",3)

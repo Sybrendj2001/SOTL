@@ -100,5 +100,8 @@ def mousePressed():
         
     if isMouseWithinSpace(40,height-150,100,120):
         page = "spelregels"
-    
+        
+    if isMouseWithinSpace(width-120,70,100,100):
+        page = "eindpagina"
+        
     return page
