@@ -1,72 +1,71 @@
-import kaarten, menu, antwoorden, personInfo, modus
+import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels, strijd
 
 def setup():
-    global page, score, vraag, ant
-    score = 0
-    page = "modus"
-    ant = "niets"
-    vraag = 0
-    personInfo.setup()
-    kaarten.setup(vraag)
-    size(800,800)
-
+    global page, ant, mode, backImg
     
-            
+    size(1600,900)
+    
+    ant = "niets"
+    page = "modus"
+    mode = " "
+    backImg = loadImage("304659.jpg")
+    
+    personInfo.setup()
+    kaarten.setup()
+    kaartjes.setup()
+    strijd.setup()
+    
 def draw():
-    global page, ant
+    global page, ant, mode, backImg
+    
+    background(255)
+    image(backImg,0,0,1712,963)
+    if page == "modus":
+        modus.draw()
     
     if page == "menu":
-        menu.draw()
-        imgKans = loadImage("achterkant_kans2.jpeg")
-        imgStrijd = loadImage("achterkant_strijd2.jpeg")
-        image(imgKans,500,200,200,132)
-        image(imgStrijd,500,450,200,132)
+        menu.draw(mode)
         
-        
-    elif page == "kans/kenniskaarten":
+        j = 0
+        while j < len(personInfo.playerList) and mode == "volledige versie":
+            if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:
+                page = "Eindpagina"
+            j += 1
+    if page == "spelregels":
+        spelregels.draw(mode)
+    
+    if page == "kaarten":
         kaarten.draw()
-        
-    elif page == "antwoorden":
+    
+    if page == "antwoorden":
         antwoorden.draw(ant)
         
-    elif page == "modus":
-        modus.draw()
-
-
+    if page == "eindpagina":
+        Eindpagina.draw()
+        
+    if page == "strijd":
+        strijd.draw()
 
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
         return True
     else:
         return False
-
     
     
 def mousePressed():
-    global score, page, vraag, kenniskaarten, ant
+    global page, ant, mode
     
-    if isMouseWithinSpace(499,199,202,134) and page == "menu":
-        page = "kans/kenniskaarten"
-        vraag = kaarten.randomKaart()
-        
-    if page == "kans/kenniskaarten":
-        ant = kaarten.mousePressed()
-        if ant != "niets":
-            page = "antwoorden"
-    #TODO: laat alle methodes hier hun input returnen als default
-    if page == "antwoorden":
-        ant1,page1 = antwoorden.mousePressed(ant,vraag)
-        
-        if ant1 != None:
-            ant = ant1
-        
-        if page1 != None:
-            page = page1
-            
     if page == "modus":
-        pageTemp = modus.mousePressed()
-        if pageTemp != None:
-            page = pageTemp
+        page, mode = modus.mousePressed()
     
-
-    
+    if page == "menu":
+        page = menu.mousePressed()
+        
+    if page == "kaarten":
+        page,ant = kaarten.mousePressed()
+        
+    if page == "antwoorden":
+        ant, page = antwoorden.mousePressed(ant)
+    if page == "strijd":
+        page = strijd.mousePressed()
