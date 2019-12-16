@@ -1,7 +1,7 @@
 def draw():
     #presettings
     fill(245, 19, 19)
-    textSize(20)
+    textSize(25)
     
     #Button full game
     text("Play the full game", 500, 550)

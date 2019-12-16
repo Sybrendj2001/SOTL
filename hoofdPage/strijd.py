@@ -29,12 +29,10 @@ def draw():
     rect(600,200,200,50)
     textSize(25)
     text("Start Timer", 550, 150)
-
-    #Player wins buttons:
-    #fill(255)
-    #rect(400,200,200,50)
-    #textSize(20)
-    #text("", 350, 250)
+    
+    #draw cardtext
+    fill(245, 19, 19)
+    text(str(selectCard()), 100, 100, 600, 200)
 
     if cardDrawn == False:
         cardText = selectCard()
@@ -44,6 +42,7 @@ def draw():
         trackTime()
     
     if timerDone == True:
+        fill(245, 19, 19)
         text("Time's up!", 600, 600)
 
 def timer():
@@ -73,8 +72,7 @@ def trackTime():
 
 def selectCard():
     global currentCard
-    textForQuestion = kaartjes.strijdKaarten[currentCard]
-    currentCard += 1
+    textForQuestion = kaartjes.strijdKaarten[currentCard][0]
     return textForQuestion
 
 def isMouseWithinSpace(x,y,w,h):
@@ -106,18 +104,20 @@ def cardGevolg():
     ans = ""
 
     if x == 1:
-        ans = "plus 5 litpunten"
+        ans = "plus5"
     if x == 2:
-        ans = "min 5 litpunten"
+        ans = "min5"
     if x == 3:
-        ans = "plus 5 carbonfootprint"
+        ans = "plus5"
     if x == 4:
-        ans = "min 5 carbonfootprint"
+        ans = "min5"
     return ans
 
 def givePlayerCard():
+    global currentCard
     name = ""
     personInfo[name].strijdInv[strijdInv.len() + 1] = cardGevolg()
+    currentCard += 1
     page = "Menu"
 
 
