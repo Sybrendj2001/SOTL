@@ -18,8 +18,8 @@ def draw(mode):
     imgStop = loadImage("stop.png")
     imgCon = loadImage("continue.png")
     
-    image(imgKans,40,150,200,132)
-    image(imgStrijd,40,302,200,132)
+    image(imgStrijd,40,150,200,132)
+    image(imgKans,40,302,200,132)
     image(imgCon,90,454,100,100)
     image(imgBook,40,height-150,100,120)
     image(imgBord,width/2-445,height/2-250,890,500)
@@ -96,12 +96,15 @@ def mousePressed():
     page = "menu"
     
     if isMouseWithinSpace(39,149,202,134):
-        page = "kaarten"
+        page = "strijd"
         
     if isMouseWithinSpace(40,height-150,100,120):
         page = "spelregels"
         
     if isMouseWithinSpace(width-120,70,100,100):
         page = "eindpagina"
+        
+    if isMouseWithinSpace(39,301,202,134):
+        page = "kaarten"
         
     return page
