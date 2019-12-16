@@ -1,7 +1,7 @@
 import kaartjes, personInfo
 
 def setup():
-    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, imgBack
+    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, imgBack, kans, imgKans, imgBook
     
     r1 = 255
     g1 = 255
@@ -26,20 +26,22 @@ def setup():
     pressed = 0
     
     imgBack = loadImage("back.png")
-    
-def draw():
-    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, imgBack
-    
-    textAlign(CENTER,CENTER)
     kans = loadImage("kans.jpeg")
     imgKans = loadImage("achterkant_kans2.jpeg")
+    imgBook = loadImage("book1.png")
+    
+def draw():
+    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, imgBack, kans, imgKans, imgBook
+    
+    textAlign(CENTER,CENTER)
+    
     
     fill(255)
     rect(39,149,202,134)
     
     image(kans,width/2-400,height/2-264,800,528)
     image(imgKans,40,150,200,132)
-    
+    image(imgBook,40,height-150,100,120)
     
     textSize(37)
     text("SURVIVAL OR THE LITTEST\nMENU",(width/2)-250,0,500,150)
@@ -100,9 +102,9 @@ def draw():
         
         else:
             fill(0)
-            text(kaartjes.kansEnKennis[0][0],100,50,450,80)
-            text(kaartjes.kansEnKennis[0][1],100,150,450,40)
-            text(kaartjes.kansEnKennis[0][2],100,200,450,40)
+            text(str(kaartjes.kansEnKennis[0][0]),width/2-225,350,450,40)
+            text(kaartjes.kansEnKennis[0][1],width/2-225,450,450,40)
+            text(kaartjes.kansEnKennis[0][2],width/2-225,500,450,40)
         
             
 def isMouseWithinSpace(x,y,w,h):
@@ -119,6 +121,9 @@ def mousePressed():
     
     page = "kaarten"
     ant = "niets"
+    
+    if isMouseWithinSpace(40,height-150,100,120):
+        page = "spelregels"
     
     if kaartjes.kansEnKennis[0] in kaartjes.kenniskaarten:
         

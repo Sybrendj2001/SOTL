@@ -1,7 +1,7 @@
 import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels
 
 def setup():
-    global page, ant, mode, backImg
+    global page, ant, mode, backImg, spelregel
     
     size(1600,900)
     
@@ -9,14 +9,17 @@ def setup():
     page = "modus"
     mode = " "
     backImg = loadImage("304659.jpg")
+    spelregel = 0
     
     personInfo.setup()
+    spelregels.setup()
     kaarten.setup()
     kaartjes.setup()
     
     
+    
 def draw():
-    global page, ant, mode, backImg
+    global page, ant, mode, backImg, spelregel
     
     background(255)
     image(backImg,0,0,1712,963)
@@ -25,20 +28,24 @@ def draw():
     
     if page == "menu":
         menu.draw(mode)
+        spelregel = 0
         
         j = 0
         while j < len(personInfo.playerList) and mode == "volledige versie":
             if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:
                 page = "Eindpagina"
             j += 1
+    
     if page == "spelregels":
-        spelregels.draw(mode)
+        spelregels.draw(spelregel)
     
     if page == "kaarten":
         kaarten.draw()
+        spelregel = 1
     
     if page == "antwoorden":
         antwoorden.draw(ant)
+        spelregel = 1
         
     if page == "eindpagina":
         Eindpagina.draw()
