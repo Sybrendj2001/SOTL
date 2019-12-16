@@ -1,53 +1,52 @@
 from random import shuffle
 
-#maakt een player-object
+#makes a player-object
 class Player:
-    #een player heeft drie waarden die bij initialisatie al worden bepaald: de naam en de twee soorten punten
+    #a player has three values which are determined by initialisation: the name and both types of points
     def __init__(self,name, litScore, wokeScore):
-        #raad eens
         self.name = name
-        #woke of niet-woke, wordt alleen door functies aangepast
+        #woke or not-woke, only ever changed by fuctions
         self.role = ""
-        #litpunten
+        #litpoints
         self.litScore = litScore
-        #wokepunten
+        #wokepoints
         self.wokeScore = wokeScore
         self.strijdInv = []
 
 def scoreChange(player, typ, amount):
-    """functie om punten op te tellen"""
+    """function to add and subtract points"""
     if typ == "lit":
-        player.litScore += amount
+        #takes either the player's new score or 0, whichever is higher
+        player.litScore = max(0, player.litScore + amount)
     elif typ == "woke":
-        player.wokeScore += amount
-    #deze else is alleen nodig als de functie handmatig wordt aangeroepen
+        #takes either the player's new score or 75, whichever is lower
+        player.wokeScore = min(75, player.wokeScore + amount)
+    #this else is purely for debugging purposes
     else:
         print("that's not an option >:(")
 
 def input(message=''):
-    """deze totaal niet van het internet gestolen methode vervangt de vanilla input() methode omdat het dezelfde naam heeft; functie plaatst de input als bericht boven de textbox"""
-    #gebruikt gekke java methods en libraries
+    """this method replaces the vanilla input() method with a custom one based on java: the given parameter is shown above the input of the textbox"""
+    #this function relies on java libraries
     from javax.swing import JOptionPane
-    #uiteindelijk geeft de method terug wat je in de textbox invult
+    #much like a regular input() method, this function returns the input as a string
     return JOptionPane.showInputDialog(frame, message)
 
 def assignRoles():
-    """voegt lit-rollen toe aan de list; hoeveelheid is de helft van de spelers, afgerond naar beneden"""
+    """adds the roles to the list: half of the players (rounded up) are woke, the others are lit"""
     global playerList
     roleList = []
-    #de helft, afgerond naar beneden, is lit
     for i in range(len(playerList)//2):
         roleList.append("lit")
-    #de rest is woke
     for i in range(len(playerList)//2, len(playerList)):
         roleList.append("woke")
     #debug
     print(roleList)
-    #roept de shuffle-methode uit de random library aan om de volgorde van de rollenlijst te husselen
+    #calls the shuffle-method from the random library to shuffle the order of the role list
     shuffle(roleList)
     #debug
     print(roleList)
-    #elke speler krijgt een van de nu in random volgorde geplaatste rollen toegewezen
+    #every player receives one of the randomly ordered roles
     for i in range(len(playerList)):
         playerList[i].role = roleList[i]
         
@@ -56,12 +55,11 @@ def checkAmount(string):
     players = int(input(string))
     if players >= 2 and players <= 8:
         for i in range (players):
-            #geef elke speler een id, naam, rol, en zet de score op 0
+            #give every player an id, name, role, and set the score to 0
             playerList.append(Player(input("Player %i, type your name: "%(i+1)), 0, 100))
     else:
         checkAmount("The amount of players has to be at least 2 and at most 8.")
-        
-#self-documenting cooooooooooooode
+    
 def turnIncrement():
     global turnCount, currentPlayer, playerList
     print(currentPlayer.name)
@@ -72,17 +70,12 @@ def turnIncrement():
 
 def setup():
     global playerList, turnCount, currentPlayer
-    #stop alle spelers in een lijst
-    #intern worden de spelers geidentificeerd met hun positie in de lijst: speler 1 is dus playerList[0]
+    #put all the players in a list
+    #internally, the players are identified by their position in the list: player 1 is playerList[0], for example
     playerList = []
-    #deze functie instantifieert de spelers en voegt ze toe aan een list
+    #this function defines the player objects and adds them to the playerlist
     checkAmount("How many players are there?")
-    #alexa what does assign mean in dutch
     assignRoles()
     turnCount = 0
     currentPlayer = playerList[turnCount]
-    
-    
-def draw():
-    global playerList
     
