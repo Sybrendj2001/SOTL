@@ -1,4 +1,4 @@
-import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels
+import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels, strijd
 
 def setup():
     global page, ant, mode, backImg, spelregel
@@ -15,7 +15,7 @@ def setup():
     spelregels.setup()
     kaarten.setup()
     kaartjes.setup()
-    
+    strijd.setup()
     
     
 def draw():
@@ -49,7 +49,9 @@ def draw():
         
     if page == "eindpagina":
         Eindpagina.draw()
-
+        
+    if page == "strijd":
+        strijd.draw()
 
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
@@ -64,7 +66,7 @@ def mousePressed():
     if page == "modus":
         page, mode = modus.mousePressed()
     
-    if  page == "menu":
+    if page == "menu":
         page = menu.mousePressed()
         
     if page == "kaarten":
@@ -72,3 +74,5 @@ def mousePressed():
         
     if page == "antwoorden":
         ant, page = antwoorden.mousePressed(ant)
+    if page == "strijd":
+        page = strijd.mousePressed()

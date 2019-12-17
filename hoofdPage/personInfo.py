@@ -12,6 +12,7 @@ class Player:
         self.litScore = litScore
         #wokepunten
         self.wokeScore = wokeScore
+        self.strijdInv = []
 
 def scoreChange(player, typ, amount):
     """functie om punten op te tellen"""
