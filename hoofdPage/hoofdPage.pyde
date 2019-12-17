@@ -12,6 +12,7 @@ def setup():
     spelregel = 0
     
     personInfo.setup()
+    menu.setup()
     spelregels.setup()
     kaarten.setup()
     kaartjes.setup()

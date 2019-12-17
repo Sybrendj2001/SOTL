@@ -1,6 +1,36 @@
-import personInfo
+import personInfo, random
+
+def setup():
+    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord, imgBook, dobbel1, dobbel2
+    
+    dobbel1 = 1
+    dobbel2 = 1
+    
+    imgKans = loadImage("achterkant_kans2.jpeg")
+    imgStrijd = loadImage("achterkant_strijd2.jpeg")
+    imgBook = loadImage("book1.png")
+    imgBord = loadImage("bordPic.png")
+    imgStop = loadImage("stop.png")
+    imgCon = loadImage("continue.png")
 
 def draw(mode):
+    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord,imgBook, dobbel1, dobbel2
+    
+    j = 1
+    y = 1
+    
+    while j < 7:
+        if j == dobbel1:
+            dice1 = loadImage("dice" + str(j) + ".png")
+        j += 1
+    
+    while y < 7:
+        if y == dobbel2:
+            dice2 = loadImage("dice" + str(y) + ".png")
+        y += 1
+        
+    image(dice1,40,40,90,90)
+    image(dice2,150,40,90,90)
     
     i = 0
     
@@ -10,13 +40,6 @@ def draw(mode):
     
     rect(39,149,202,134)
     rect(39,301,202,134)
-    
-    imgKans = loadImage("achterkant_kans2.jpeg")
-    imgStrijd = loadImage("achterkant_strijd2.jpeg")
-    imgBook = loadImage("book1.png")
-    imgBord = loadImage("bordPic.png")
-    imgStop = loadImage("stop.png")
-    imgCon = loadImage("continue.png")
     
     image(imgStrijd,40,150,200,132)
     image(imgKans,40,302,200,132)
@@ -107,4 +130,15 @@ def mousePressed():
     if isMouseWithinSpace(39,301,202,134):
         page = "kaarten"
         
+    if isMouseWithinSpace(40,40,200,90):
+        dice()
+        
     return page
+
+def dice():
+    global dobbel1, dobbel2
+    
+    dobbel1 = random.randint(1,6)
+    dobbel2 = random.randint(1,6)
+    
+    
