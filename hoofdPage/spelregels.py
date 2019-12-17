@@ -12,6 +12,8 @@ def setup():
 def draw(spelregel):
     global imgKans, imgStrijd, imgStop, imgCon, imgBack
     
+    image(imgBack,width-150,50,100,100)
+    
     if spelregel == 0:
         
         fill(255)
