@@ -17,6 +17,7 @@ def setup():
     kaarten.setup()
     kaartjes.setup()
     strijd.setup()
+    Eindpagina.setup()
     
     
 def draw():

@@ -1,3 +1,53 @@
-def draw():
-    background(150)
+import personInfo
+
+def setup():
+    global points, player, role
     
+    if personInfo.playerList[0].role == "woke":
+        points = personInfo.playerList[0].wokeScore 
+    else:
+        points = personInfo.playerList[0].litScore
+    
+    player = personInfo.playerList[0].name
+    role = personInfo.playerList[0].role
+    
+def draw():
+    global points, player, role
+    
+    i = 1
+    
+    while i < len(personInfo.playerList):
+        
+        p = personInfo.playerList[i].name
+        
+        if personInfo.playerList[i].role == "woke":
+            a = personInfo.playerList[i].wokeScore
+            y = difference(a,75)
+            
+        if personInfo.playerList[i].role == "lit":
+            a = personInfo.playerList[i].litScore
+            y = difference(a,0)
+        
+        if role == "woke":
+            x = difference(points,75)
+        else:
+            x = difference(points,0)
+            
+        if y > x:
+            points = a
+            player = p
+        
+        i += 1
+            
+    text(player,100,100)
+
+
+def difference(a,b):
+    
+    if a >= b:
+        result = a - b
+    else:
+        result = b - a
+   
+    return result
+        

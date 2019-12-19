@@ -132,7 +132,10 @@ def mousePressed():
         
     if isMouseWithinSpace(40,40,200,90):
         dice()
-        
+    
+    if isMouseWithinSpace(90,454,100,100):
+        personInfo.turnIncrement()
+            
     return page
 
 def dice():
