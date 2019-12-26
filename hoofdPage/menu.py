@@ -1,4 +1,4 @@
-import personInfo, random
+import personInfo, random, kaarten
 
 def setup():
     global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord, imgBook, dobbel1, dobbel2
@@ -128,6 +128,7 @@ def mousePressed():
         page = "eindpagina"
         
     if isMouseWithinSpace(39,301,202,134):
+        kaarten.setup()
         page = "kaarten"
         
     if isMouseWithinSpace(40,40,200,90):

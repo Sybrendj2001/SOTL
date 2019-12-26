@@ -14,6 +14,8 @@ def draw(spelregel):
     
     image(imgBack,width-150,50,100,100)
     
+    textSize(18)
+    
     if spelregel == 0:
         
         fill(255)
@@ -35,15 +37,38 @@ def draw(spelregel):
         text("Dit zorgt ervoor dat de volgende speler aan de beurt komt als je geen kaart hoeft te pakken.",450,653,850,40)
         text("De stop knop zorgt ervoor dat je vervroegd stopt met het spel als je eerder klaar bent.",450,774,850,40)
     
-    if spelregel == 1:
+    if spelregel == 1 or spelregel == 2:
         fill(255)
         textAlign(CENTER,TOP)
-        text("Kanskaart:",100,100,600,40)
-        text("Kenniskaart:",width-700,100,600,40)
-        text("Als je een kanskaart krijgt, krijg je een verhaaltje. Ook staat er op het kaartje het aantal punten dat je kan krijgen. Soms zit er een kanskaart bij die vereist dat je een keuze moet maken of een dobbelsteen moet gooien. Klik dan op de keuze die je wil of op de dobbelsteen en klik dan op de terug knop.",100,150,600,200)
-        text("Bij een kenniskaart moet je proberen het juiste antwoord te geven. Dit doe je door een vierkant aan te klikken waar het antwoord instaat waarvan jij denkt dat het goede antwoord erin staat. Je krijgt gelijk te zien of het goed of fout was(groene kleur betekent goed, rood betekent fout). Indien het antwoord fout was krijg je het goede antwoord ook te zien.",width-700,150,600,200)
+        text("Kanskaart:",100,200,600,40)
+        text("Kenniskaart:",width-700,200,600,40)
+        text("Als je een kanskaart krijgt, krijg je een verhaaltje. Ook staat er op het kaartje het aantal punten dat je kan krijgen. Soms zit er een kanskaart bij die vereist dat je een keuze moet maken of een dobbelsteen moet gooien. Klik dan op de keuze die je wil of op de dobbelsteen en klik dan op de terug knop.",100,250,600,200)
+        text("Bij een kenniskaart moet je proberen het juiste antwoord te geven. Dit doe je door een vierkant aan te klikken waar het antwoord instaat waarvan jij denkt dat het goede antwoord erin staat. Je krijgt gelijk te zien of het goed of fout was(groene kleur betekent goed, rood betekent fout). Indien het antwoord fout was krijg je het goede antwoord ook te zien.",width-700,250,600,200)
         
         textAlign(CENTER,CENTER)
-        image(imgBack,425,400,100,100)
-        text("Dit is de terug knop. Met dit knopje ga je terug naar de hoofd pagina. Bij kaarten waar je keuze hoeft te maken zie je dit er gelijk bij staan. Bij de kaarten waar je een keuze moet maken komt deze knop te voorschijn nadat je een keuze hebt gemaakt.",575,400,600,100)
+        image(imgBack,425,500,100,100)
+        text("Dit is de terug knop. Met dit knopje ga je terug naar de hoofd pagina. Bij kaarten waar je keuze hoeft te maken zie je dit er gelijk bij staan. Bij de kaarten waar je een keuze moet maken komt deze knop te voorschijn nadat je een keuze hebt gemaakt.",575,500,600,100)
+
+def isMouseWithinSpace(x,y,w,h):
+    if (x < mouseX < x + w and y < mouseY < y + h):
+        return True
+    else:
+        return False
+
+
+def mousePressed(spelregel):
+    
+    page = "spelregels"
+    
+    if isMouseWithinSpace(width-150,50,100,100) and spelregel == 0:
+        page = "menu"
+    
+    if isMouseWithinSpace(width-150,50,100,100) and spelregel == 1:
+        page = "kaarten"
+        
+    if isMouseWithinSpace(width-150,50,100,100) and spelregel == 2:
+        page = "antwoorden"
+            
+    return page
+        
     

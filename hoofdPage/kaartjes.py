@@ -123,9 +123,9 @@ def setup():
     ]
     
     kansSpeciaal = [["Je neemt een kat in plaats van een kind. Gooi 1 dobbelsteen, even en oneven nummers hebben andere waardes",[-2,2],[2,-2]],
-    ["Je bent rijk geworden met je werk Maak een keuze","Je doneert veel geld aan projecten om bossen te beschermen en opnieuw te bebossen.","Je koopt een extra huis en 2 sportauto\'s.",[-8,2],[-2,8]],
-    ["Je hebt een prijs van 10.000 euro gewonnen! Maak een keuze:","Koop een vliegticket naar N-Z","Koop de komende 3 jaar alles biologisch en lokaal",[4,4],[-4,-4]],
-    ["Je begint een restaurant. Kies:","Veganistisch restaurant","korean bbq restaurant",[-4,-1],[5,7]]
+    ["Je bent rijk geworden met je werk Maak een keuze","A = Je doneert veel geld aan projecten om bossen te beschermen en opnieuw te bebossen.","B = Je koopt een extra huis en 2 sportauto\'s.",[-8,2],[-2,8]],
+    ["Je hebt een prijs van 10.000 euro gewonnen! Maak een keuze:","A = Koop een vliegticket naar N-Z","B = Koop de komende 3 jaar alles biologisch en lokaal",[4,4],[-4,-4]],
+    ["Je begint een restaurant. Kies:","A = Veganistisch restaurant","B = korean bbq restaurant",[-4,-1],[5,7]]
     ]
     
     kansEnKennis = kanskaarten + kenniskaarten + kansSpeciaal

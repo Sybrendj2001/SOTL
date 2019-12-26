@@ -1,10 +1,12 @@
 import antwoorden, kaarten, menu, kaartjes, personInfo, modus, Eindpagina, spelregels, strijd
+from random import shuffle
 
 def setup():
-    global page, ant, mode, backImg, spelregel
+    global page, ant, mode, backImg, spelregel, kaart
     
     size(1600,900)
     
+    kaart = 0
     ant = "niets"
     page = "modus"
     mode = " "
@@ -21,10 +23,14 @@ def setup():
     
     
 def draw():
-    global page, ant, mode, backImg, spelregel
+    global page, ant, mode, backImg, spelregel, kaart
     
     background(255)
     image(backImg,0,0,1712,963)
+    
+    if kaart % len(kaartjes.kansEnKennis) == 0 and kaart != 0:
+        shuffle(kaartjes.kansEnKennis)
+        
     if page == "modus":
         modus.draw()
     
@@ -47,13 +53,14 @@ def draw():
     
     if page == "antwoorden":
         antwoorden.draw(ant)
-        spelregel = 1
+        spelregel = 2
         
     if page == "eindpagina":
         Eindpagina.draw()
         
     if page == "strijd":
         strijd.draw()
+        spelregel = 3
 
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
@@ -63,7 +70,7 @@ def isMouseWithinSpace(x,y,w,h):
     
     
 def mousePressed():
-    global page, ant, mode
+    global page, ant, mode, spelregel, kaart
     
     if page == "modus":
         page, mode = modus.mousePressed()
@@ -73,8 +80,13 @@ def mousePressed():
         
     if page == "kaarten":
         page,ant = kaarten.mousePressed()
+        kaart +=1
         
     if page == "antwoorden":
         ant, page = antwoorden.mousePressed(ant)
+    
     if page == "strijd":
         page = strijd.mousePressed()
+        
+    if page == "spelregels":
+        page = spelregels.mousePressed(spelregel)

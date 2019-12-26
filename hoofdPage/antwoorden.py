@@ -24,6 +24,8 @@ def isMouseWithinSpace(x,y,w,h):
 def mousePressed(ant):
     page = "antwoorden"
     
+    if isMouseWithinSpace(40,height-150,100,120):
+        page = "spelregels"
     
     if isMouseWithinSpace(1250,186,100,100):
         if ant == "right":

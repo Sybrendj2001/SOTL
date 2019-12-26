@@ -1,7 +1,9 @@
-import kaartjes, personInfo
+import kaartjes, personInfo, random
 
 def setup():
-    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, imgBack, kans, imgKans, imgBook
+    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, imgBack, kans, imgKans, imgBook, dobbel
+    
+    dobbel = 1
     
     r1 = 255
     g1 = 255
@@ -31,7 +33,7 @@ def setup():
     imgBook = loadImage("book1.png")
     
 def draw():
-    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, imgBack, kans, imgKans, imgBook
+    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, imgBack, kans, imgKans, imgBook, dobbel
     
     textAlign(CENTER,CENTER)
     
@@ -74,12 +76,11 @@ def draw():
         while i < (len(kaartjes.kansEnKennis[0])-1):
             fill(0)
             textSize(10)
-            text(str(kaartjes.kansEnKennis[0][i]),width/2-225,h,450,40)
+            text(str(kaartjes.kansEnKennis[0][i]),width/2-225,h,445,40)
             h = h + 50
             i = i + 1
         
         
-    
     
     if kaartjes.kansEnKennis[0] in kaartjes.kanskaarten:
         fill(0)
@@ -90,22 +91,48 @@ def draw():
         text("Carbon footprint:\n" + str(kaartjes.kansEnKennis[0][1]),width/2-350,height/2+180,120,40)
         text("litpunten:\n" + str(kaartjes.kansEnKennis[0][2]),width/2+280,height/2+180,80,40)
     
-    
     if kaartjes.kansEnKennis[0] in kaartjes.kansSpeciaal:
         if len(kaartjes.kansEnKennis[0]) < 4:
-            fill(0)
-            text(kaartjes.kansEnKennis[0][0],width/2-225,50,450,80)
+            
+            j = 1
+            while j < 7:
+                if j == dobbel:
+                    dice = loadImage("dice" + str(j) + ".png")
+                j += 1
+            
+            rect(width/2-50,500,100,100)
+            image(dice,width/2-50,500,100,100)
             fill(255)
-            rect(300,300,150,150)
+            
             fill(0)
-            text("dobbelsteen",300,300,150,150)
-        
+            text(kaartjes.kansEnKennis[0][0],width/2-225,height/2-75,450,150)
+            
+            if pressed == 1 and dobbel % 2 == 0:
+                text("Carbon footprint:\n" + str(kaartjes.kansEnKennis[0][1][0]),width/2-350,height/2+180,120,40)
+                text("litpunten:\n" + str(kaartjes.kansEnKennis[0][1][1]),width/2+280,height/2+180,80,40)
+                image(imgBack,1250,186,100,100)
+                
+            elif pressed == 1:
+                text("Carbon footprint:\n" + str(kaartjes.kansEnKennis[0][2][0]),width/2-350,height/2+180,120,40)
+                text("litpunten:\n" + str(kaartjes.kansEnKennis[0][2][1]),width/2+280,height/2+180,80,40)
+                image(imgBack,1250,186,100,100)
+                
         else:
             fill(0)
             text(str(kaartjes.kansEnKennis[0][0]),width/2-225,350,450,40)
+            
+            fill(255)
+            rect(width/2-225,450,450,40)
+            fill(0)
             text(kaartjes.kansEnKennis[0][1],width/2-225,450,450,40)
+            
+            fill(255)
+            rect(width/2-225,500,450,40)
+            fill(0)
             text(kaartjes.kansEnKennis[0][2],width/2-225,500,450,40)
         
+            text("Carbon footprint:\n" + "A = " + str(kaartjes.kansEnKennis[0][3][0]) + " or B = " +str(kaartjes.kansEnKennis[0][4][0]),width/2-350,height/2+180,120,40)
+            text("litpunten:\n" + "A = " + str(kaartjes.kansEnKennis[0][3][1]) + " or B = " +str(kaartjes.kansEnKennis[0][4][1]),width/2+230,height/2+180,80,40)
             
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
@@ -117,7 +144,7 @@ def isMouseWithinSpace(x,y,w,h):
 
     
 def mousePressed():
-    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed
+    global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, dobbel
     
     page = "kaarten"
     ant = "niets"
@@ -188,6 +215,7 @@ def mousePressed():
                 r5 = 30
                 g5 = 237
                 b5 = 26
+                ant = "right"
             else:
                 r5 = 255
                 g5 = 97
@@ -199,7 +227,9 @@ def mousePressed():
         
     if kaartjes.kansEnKennis[0] in kaartjes.kanskaarten:
         if isMouseWithinSpace(1250,186,100,100):
+            
             page = "menu"
+            
             if personInfo.currentPlayer.role == "woke":
                 personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][1])
             else:
@@ -215,5 +245,72 @@ def mousePressed():
     if ant != "niets":
         page = "antwoorden"
         
+    if kaartjes.kansEnKennis[0] in kaartjes.kansSpeciaal:
+        if len(kaartjes.kansEnKennis[0]) < 4:
+            if isMouseWithinSpace(width/2-50,500,100,100) and pressed < 1:
+                pressed += 1
+                dice()
+            
+            if isMouseWithinSpace(1250,186,100,100) and pressed == 1:
+                
+                if dobbel % 2 == 0:
+                    if personInfo.currentPlayer.role == "woke":
+                        personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][1][0])
+                    else:
+                        personInfo.scoreChange(personInfo.currentPlayer,"lit",kaartjes.kansEnKennis[0][1][1])
+                        
+                else:
+                    if personInfo.currentPlayer.role == "woke":
+                        personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][2][0])
+                    else:
+                        personInfo.scoreChange(personInfo.currentPlayer,"lit",kaartjes.kansEnKennis[0][2][1])
+                
+                
+                l = kaartjes.kansEnKennis[0]
+    
+                kaartjes.kansEnKennis.append(l)
+                kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
+            
+                personInfo.turnIncrement()
+                
+                page = "menu"
+        
+        else:
+            if isMouseWithinSpace(width/2-225,450,450,40):
+                if personInfo.currentPlayer.role == "woke":
+                    personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][3][0])
+                else:
+                    personInfo.scoreChange(personInfo.currentPlayer,"lit",kaartjes.kansEnKennis[0][3][1])
+                    
+                l = kaartjes.kansEnKennis[0]
+    
+                kaartjes.kansEnKennis.append(l)
+                kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
+            
+                personInfo.turnIncrement()
+                
+                page = "menu"
+            
+            if isMouseWithinSpace(width/2-225,500,450,40):
+                if personInfo.currentPlayer.role == "woke":
+                    personInfo.scoreChange(personInfo.currentPlayer,"woke",kaartjes.kansEnKennis[0][4][0])
+                else:
+                    personInfo.scoreChange(personInfo.currentPlayer,"lit",kaartjes.kansEnKennis[0][4][1])
+                
+                l = kaartjes.kansEnKennis[0]
+    
+                kaartjes.kansEnKennis.append(l)
+                kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
+            
+                personInfo.turnIncrement()
+                
+                page = "menu"
+                
         
     return page, ant
+
+
+def dice():
+    global dobbel
+    
+    dobbel = random.randint(1,6)
