@@ -100,8 +100,8 @@ def draw():
                     dice = loadImage("dice" + str(j) + ".png")
                 j += 1
             
-            rect(width/2-50,500,100,100)
             image(dice,width/2-50,500,100,100)
+            rect(width/2-50,500,100,100)
             fill(255)
             
             fill(0)
@@ -132,7 +132,7 @@ def draw():
             text(kaartjes.kansEnKennis[0][2],width/2-225,500,450,40)
         
             text("Carbon footprint:\n" + "A = " + str(kaartjes.kansEnKennis[0][3][0]) + " or B = " +str(kaartjes.kansEnKennis[0][4][0]),width/2-350,height/2+180,120,40)
-            text("litpunten:\n" + "A = " + str(kaartjes.kansEnKennis[0][3][1]) + " or B = " +str(kaartjes.kansEnKennis[0][4][1]),width/2+230,height/2+180,80,40)
+            text("litpunten:\n" + "A = " + str(kaartjes.kansEnKennis[0][3][1]) + " or B = " +str(kaartjes.kansEnKennis[0][4][1]),width/2+230,height/2+180,120,40)
             
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
