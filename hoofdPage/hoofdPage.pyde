@@ -38,6 +38,9 @@ def draw():
         menu.draw(mode)
         spelregel = 0
         
+        if mode == "verkorte versie" and personInfo.turnCount == 20:
+            page = "Eindpagina"
+        
         j = 0
         while j < len(personInfo.playerList) and mode == "volledige versie":
             if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:

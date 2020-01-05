@@ -14,18 +14,8 @@ def setup():
 def draw():
     global points, player, role
     
-    textAlign(CENTER,TOP)
-    textSize(50)    
-    text(player + " heeft gewonnen!",width/2-400,300,800,200)
-    textSize(40)
-    text("met " + str(points) + " punten",width/2-400,370,800,200)
-
-
-
-def champ():
-    global points, player, role
     
-    i = 1
+    i = 0
     
     while i < len(personInfo.playerList):
         
@@ -47,8 +37,17 @@ def champ():
         if y > x:
             points = a
             player = p
-        
+
         i += 1
+    
+    
+    textAlign(CENTER,TOP)
+    textSize(50)    
+    text(player + " heeft gewonnen!",width/2-400,300,800,200)
+    textSize(40)
+    text("met " + str(points) + " punten",width/2-400,370,800,200)
+
+    
 
 def difference(a,b):
     
@@ -56,6 +55,6 @@ def difference(a,b):
         result = a - b
     else:
         result = b - a
-   
+
     return result
         
