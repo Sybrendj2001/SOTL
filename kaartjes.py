@@ -1,7 +1,7 @@
 from random import shuffle
 
 def setup():
-    global kenniskaarten, kanskaarten, kansSpeciaal, kansEnKennis
+    global kenniskaarten, kanskaarten, kansSpeciaal, kansEnKennis, strijdKaarten
     
     kenniskaarten = [["Welk jaar was het warmst in de tijd dat wij op aarde leven en het weer konden meten (1880)?","A = 2018","B = 2016","C = 2010","D = 2006","B"],
                      ["Welke 3 landen doen het meest aan milieuvriendelijkheid?","A = oostenrijk, zwitserland, denemarken","B = frankrijk, oostenrijk, zwitserland", "C = zwitserland, frankrijk, denemarken","D = frankrijk, zwitserland, denemarken","D"],
@@ -122,7 +122,6 @@ def setup():
     ["Oeps... Je rijdt een kat dood...",-1,-4]
     ]
     
-    
     kansSpeciaal = [["Je neemt een kat in plaats van een kind. Gooi 1 dobbelsteen, even en oneven nummers hebben andere waardes",[-2,2],[2,-2]],
     ["Je bent rijk geworden met je werk Maak een keuze","Je doneert veel geld aan projecten om bossen te beschermen en opnieuw te bebossen.","Je koopt een extra huis en 2 sportauto\'s.",[-8,2],[-2,8]],
     ["Je hebt een prijs van 10.000 euro gewonnen! Maak een keuze:","Koop een vliegticket naar N-Z","Koop de komende 3 jaar alles biologisch en lokaal"],
@@ -131,30 +130,28 @@ def setup():
     
     kansEnKennis = kanskaarten + kenniskaarten + kansSpeciaal
     
-    """
-    strijdKaarten = [["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel global warming-termen ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen. Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."]
-    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel videos met meer dan 2,5 miljard views ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen. Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."]
-    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel instagram-accounts met meer dan 75 miljoen volgers ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen. Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."]
-    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel landen in de top 20 koolstofemissie-landen ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen. Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."]
-    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel woorden met meer dan 15 letters ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen. Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."]
-    ["Degene die deze kaart trekt daagt iemand anders uit om te kijken wie er langer op 1 been kan staan. De winnaar krijgt 3 punten richting zijn/haar doel."]
-    ["Speel steen papier schaar tegen een speler naar keuze. Degene die als eerste 2x wint steelt 3 punten naar keuze van de tegenstander."]
-    ["Alle spelers noemen omstebeurt een bedreigde diersoort op. Wie als eerste niks meer weet moet alle andere spelers een punt richting hun doel geven."]
-    ["De speler begint met het benoemen van een dier. Hierna bedenkt de volgende speler een dier dat begint met de laatste letter van het vorige dier. Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."]
-    ["De speler begint met het benoemen van een land. Hierna bedenkt de volgende speler een land dat begint met de laatste letter van het vorige land. Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."]
-    ["De speler begint met het benoemen van een automerk. Hierna bedenkt de volgende speler een automerk. Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."]
-    ["De speler begint met het benoemen van een Nederlandse stad. Hierna bedenkt de volgende speler een stad die begint met de laatste letter van de vorige stad. Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."]
-    ["De speler die deze kaart trekt moet vanaf nu alles met 1 hand doen. Als ze dit vergeten te doen moeten zij 5 punten van hun doel afstaan."]
-    ["Speel een potje duim worstelen tegen de speler die het verste van zijn doel af is. Als je wint verdien je 1 punt richting jouw doel, als hij/zij wint krijgt hij/zij 2 punten."]
-    ["Je mag een willekeurige speler uitkiezen die nu een kanskaart moet trekken."]
-    ["Een speler naar keuze verliest 3 punten richting zijn/haar doel"]
-    ["Bedenk in 30 seconden minstens 10 groenten. Als dit lukt krijg je 3 punten richting je doel."]
-    ["Bedenk in 1 minuut minstens 10 jongensnamen. Als dit lukt krijg je 10 punten richting je doel."]
-    ["Verdeel in 2 teams. Ieder team krijgt 30 sec om een top 3 te vormen over wat in nederland de meeste uitstoot veroorzaakt."]
-    ["Speel met al je medespelers “Ik ga protesteren op Malieveld en ik neem mee”; een variatie op “ik ga op reis en ik neem mee” waar je manieren noemt om duurzamer te leven. De winnaar krijgt 10 punten naar zijn/haar doel."]
-    ["Zet tussen 2 en 5 punten naar jouw doel in, kies voor even of oneven getallen en gooi met een dobbelsteen. Als je de juiste soort gooit, worden je punten verdubbeld; anders ben je ze kwijt."]
+    strijdKaarten = [["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel global warming-termen ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
+    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel videos met meer dan 2,5 miljard views ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
+    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel instagram-accounts met meer dan 75 miljoen volgers ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
+    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel landen in de top 20 koolstofemissie-landen ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
+    ["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel woorden met meer dan 15 letters ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
+    ["Degene die deze kaart trekt daagt iemand anders uit om te kijken wie er langer op 1 been kan staan. De winnaar krijgt 3 punten richting zijn/haar doel."],
+    ["Speel steen papier schaar tegen een speler naar keuze. Degene die als eerste 2x wint steelt 3 punten naar keuze van de tegenstander."],
+    ["Alle spelers noemen omstebeurt een bedreigde diersoort op. Wie als eerste niks meer weet moet alle andere spelers een punt richting hun doel geven."],
+    ["De speler begint met het benoemen van een dier. Hierna bedenkt de volgende speler een dier dat begint met de laatste letter van het vorige dier.   Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."],
+    ["De speler begint met het benoemen van een land. Hierna bedenkt de volgende speler een land dat begint met de laatste letter van het vorige land.   Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."],
+    ["De speler begint met het benoemen van een automerk. Hierna bedenkt de volgende speler een automerk. Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."],
+    ["De speler begint met het benoemen van een Nederlandse stad. Hierna bedenkt de volgende speler een stad die begint met de laatste letter van de vorige stad.   Wie als eerste niks meer weet geeft alle andere spelers een punt richting hun doel."],
+    ["De speler die deze kaart trekt moet vanaf nu alles met 1 hand doen. Als ze dit vergeten te doen moeten zij 5 punten van hun doel afstaan."],
+    ["Speel een potje duim worstelen tegen de speler die het verste van zijn doel af is. Als je wint verdien je 1 punt richting jouw doel,   als hij/zij wint krijgt hij/zij 2 punten."],
+    ["Je mag een willekeurige speler uitkiezen die nu een kanskaart moet trekken."],
+    ["Een speler naar keuze verliest 3 punten richting zijn/haar doel"],
+    ["Bedenk in 30 seconden minstens 10 groenten. Als dit lukt krijg je 3 punten richting je doel."],
+    ["Bedenk in 1 minuut minstens 10 jongensnamen. Als dit lukt krijg je 10 punten richting je doel."],
+    ["Verdeel in 2 teams. Ieder team krijgt 30 sec om een top 3 te vormen over wat in nederland de meeste uitstoot veroorzaakt."],
+    ["Speel met al je medespelers Ik ga protesteren op Malieveld en ik neem mee:   een variatie op ik ga op reis en ik neem mee waar je manieren noemt om duurzamer te leven. De winnaar krijgt 10 punten naar zijn/haar doel."],
+    ["Zet tussen 2 en 5 punten naar jouw doel in, kies voor even of oneven getallen en gooi met een dobbelsteen.   Als je de juiste soort gooit, worden je punten verdubbeld; anders ben je ze kwijt."]
     ]
-    """
     
     shuffle(strijdKaarten)
     shuffle(kansEnKennis)
