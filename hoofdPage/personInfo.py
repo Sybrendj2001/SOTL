@@ -56,7 +56,7 @@ def checkAmount(string):
     if players >= 2 and players <= 8:
         for i in range (players):
             #give every player an id, name, role, and set the score to 0
-            playerList.append(Player(input("Player %i, type your name: "%(i+1)), 0, 100))
+            playerList.append(Player(input("Player %i, type your name: "%(i+1)), 0, 75))
     else:
         checkAmount("The amount of players has to be at least 2 and at most 8.")
     
