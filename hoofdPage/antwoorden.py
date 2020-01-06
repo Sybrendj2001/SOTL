@@ -1,38 +1,53 @@
-import kaarten, personInfo
+import kaarten, kaartjes, personInfo
 
-def draw(a):
-    global ant1
-    ant1 = a
-    
-    background(255)
+def draw(ant):
     
     kaarten.draw()
-    if a == "right":
-        text("You gave the right anwser",100,400,450,40)
-    elif a == "wrong":
-        text("You gave the wrong anwser",100,400,450,40)
-        
-    rect(600,100,100,100)
+    
+    a = kaartjes.kansEnKennis[0][-1]
+    
+    if ant == "wrong":
+        text("Je hebt het verkeerde antwoord aangeklinkt! Het juiste antwoord is " + a,width/2-225,600,450,40)
+    else:
+        text("Je hebt het juiste antwoord aangeklikt!",width/2-225,600,450,40)
+    
+    imgBack = loadImage("back.png")
+    image(imgBack,1250,186,100,100)
     
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
         return True
     else:
         return False
-
-def mousePressed(ant,vraag):
+    
+    
+def mousePressed(ant):
     page = "antwoorden"
     
-    if isMouseWithinSpace(600,100,100,100):
+    
+    if isMouseWithinSpace(1250,186,100,100):
         if ant == "right":
-            personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,3)
-            
+            if personInfo.currentPlayer.role == "lit":
+                personInfo.scoreChange(personInfo.currentPlayer,"lit",3)
+            else:
+                personInfo.scoreChange(personInfo.currentPlayer,"woke",-3)
         else:
-            personInfo.scoreChange(personInfo.playerList[0],personInfo.playerList[0].role,-2)
+            if personInfo.currentPlayer.role == "lit":
+                personInfo.scoreChange(personInfo.currentPlayer,"lit",-2)
+            else:
+                personInfo.scoreChange(personInfo.currentPlayer,"woke",2)
+        
+        l = kaartjes.kansEnKennis[0]
+        
+        kaartjes.kansEnKennis.append(l)
+        
+        kaartjes.kansEnKennis.remove(kaartjes.kansEnKennis[0])
         
         page= "menu"
         ant = "niets"
         
-        kaarten.setup(vraag)
+        personInfo.turnIncrement()
+        
+        kaarten.setup()
     
     return ant, page
