@@ -1,7 +1,7 @@
 import personInfo, random, kaarten
 
 def setup():
-    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord, imgBook, dobbel1, dobbel2
+    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord, imgBook, dobbel1, dobbel2, drawInventory
     
     dobbel1 = 1
     dobbel2 = 1
@@ -12,9 +12,10 @@ def setup():
     imgBord = loadImage("bordPic.png")
     imgStop = loadImage("stop.png")
     imgCon = loadImage("continue.png")
+    drawInventory = False
 
 def draw(mode):
-    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord,imgBook, dobbel1, dobbel2
+    global imgKans, imgStrijd, imgStop, imgCon, imgBack, imgBord,imgBook, dobbel1, dobbel2, drawInventory
     
     j = 1
     y = 1
@@ -32,9 +33,15 @@ def draw(mode):
     image(dice1,40,40,90,90)
     image(dice2,150,40,90,90)
     
-    i = 0
-    
+    i = 0    
     textAlign(CENTER,CENTER)
+    
+    #InventorySlot
+    textSize(37)
+    fill(19, 249, 19)
+    rect(((width/2) - 50), height - 100, 100, 50) # Will later be a picture
+    text("Inventory", width / 2, height - 150)
+    displayInventory(drawInventory)
     
     fill(255)
     
@@ -48,6 +55,7 @@ def draw(mode):
     image(imgBord,width/2-445,height/2-250,890,500)
     
     textSize(37)
+    textAlign(CENTER,CENTER)
     text("SURVIVAL OR THE LITTEST\nMENU",(width/2)-250,0,500,150)
     
     evenN = 150
@@ -105,17 +113,51 @@ def draw(mode):
     text(str(mode),width-210,0,200,50)
     image(imgStop,width-120,70,100,100)
     text("Eindig het spel",width-210,140,200,80)
-        
-
+    
+def displayInventory(a):
+    if a == True:
+        cp = personInfo.currentPlayer
+        k = 0
+        for i in cp.strijdInv:
+            fill(249,19,19)
+            print(str(i))
+            textSize(15)
+            textAlign(LEFT,CENTER)
+            dataPlace = 400 + k * 150
+            text(i, 1200, dataPlace)
+            k += 1
+            
+def assignStrijdToPlayer(a):
+    cp = personInfo.currentPlayer
+    gevolg = ""
+    if a == 0:
+        gevolg = cp.strijdInv[a]
+    elif a == 1:
+        gevolg = cp.strijdInv[a]
+    elif a == 2:
+        gevolg = cp.strijdInv[a]
+    whatToGet = 0
+    if gevolg == "min5":
+        whatToGet -= 5
+    else:
+        whatToGet += 5
+    assignee = personInfo.input("Wie ga je de strijdkaart geven")
+    for name in personInfo.playerList:
+        if name.name == assignee:
+            if name.role == "woke":
+                name.wokeScore += whatToGet
+            elif name.role == "lit":
+                name.litScore += whatToGet
+    cp.strijdInv.remove(gevolg)
+    
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
         return True
     else:
         return False
 
-
 def mousePressed():
-    
+    global drawInventory
     page = "menu"
     
     if isMouseWithinSpace(39,149,202,134):
@@ -139,10 +181,22 @@ def mousePressed():
             
     return page
 
+        
+    if isMouseWithinSpace(((width/2) - 50), height - 100, 100, 50):
+        drawInventory = not drawInventory
+        
+    if drawInventory == True:
+        if isMouseWithinSpace(1200,400,100,50):
+            assignStrijdToPlayer(0)
+        elif isMouseWithinSpace(1200,550,100,50):
+            assignStrijdToPlayer(1)
+        elif isMouseWithinSpace(1200,700,100,50):
+            assignStrijdToPlayer(2)
+        
+    return page
+
 def dice():
     global dobbel1, dobbel2
     
     dobbel1 = random.randint(1,6)
     dobbel2 = random.randint(1,6)
-    
-    

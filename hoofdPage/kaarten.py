@@ -37,6 +37,8 @@ def draw():
     
     textAlign(CENTER,CENTER)
     
+    fill(255)
+    rect(39,149,202,134)
     
     fill(255)
     rect(39,149,202,134)
