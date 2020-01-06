@@ -3,6 +3,7 @@ from random import shuffle
 def setup():
     global kenniskaarten, kanskaarten, kansSpeciaal, kansEnKennis, strijdKaarten
     
+    #All kenniskaarten in one list
     kenniskaarten = [["Welk jaar was het warmst in de tijd dat wij op aarde leven en het weer konden meten (1880)?","A = 2018","B = 2016","C = 2010","D = 2006","B"],
                      ["Welke 3 landen doen het meest aan milieuvriendelijkheid?","A = oostenrijk, zwitserland, denemarken","B = frankrijk, oostenrijk, zwitserland", "C = zwitserland, frankrijk, denemarken","D = frankrijk, zwitserland, denemarken","D"],
                      ["Waarom doet frankrijk het zo goed qua milieuvriendelijkheid?","A = ontzettend veel vegetariers","B = kluizenaars","C = subsidies voor milieuvriendelijke projecten", "D = water controlering","C"],
@@ -51,6 +52,7 @@ def setup():
                      ["Overleven bacterien en virussen tientallen tot honderden jaren in permafrost?","A = Ja","B = Nee","A"],
                      ["Klimaatverandering zorgt ervoor dat sommige soorten zich verspreiden. Zoals de tijgermug. Deze veroorzaakt:","A = Chikungunya","B = Dengue/knokkelkoorts","C = Gele koorts","D = Zika","E = Allemaal","E"]]
     
+    #All kanskaarten in one list
     kanskaarten = [["Je zet een compostbak in de tuin waar je je etensresten in gooit. De compostbak wordt al snel een broedplaats voor insecten, en eigenlijk blijf je er het liefste uit de buurt.",-3,-4],
     ["Je koopt een nieuwe douchekop en je bent niet meer uit de badkamer te krijgen.",5,2],
     ["Je stapt over op Groeneco.",-5,0],
@@ -122,12 +124,14 @@ def setup():
     ["Oeps... Je rijdt een kat dood...",-1,-4]
     ]
     
+    #All special kanskaarten in one list. This is in a different list because of the different way of placing and awnsering.
     kansSpeciaal = [["Je neemt een kat in plaats van een kind. Gooi 1 dobbelsteen, even en oneven nummers hebben andere waardes",[-2,2],[2,-2]],
     ["Je bent rijk geworden met je werk Maak een keuze","A = Je doneert veel geld aan projecten om bossen te beschermen en opnieuw te bebossen.","B = Je koopt een extra huis en 2 sportauto\'s.",[-8,2],[-2,8]],
     ["Je hebt een prijs van 10.000 euro gewonnen! Maak een keuze:","A = Koop een vliegticket naar N-Z","B = Koop de komende 3 jaar alles biologisch en lokaal",[4,4],[-4,-4]],
     ["Je begint een restaurant. Kies:","A = Veganistisch restaurant","B = korean bbq restaurant",[-4,-1],[5,7]]
     ]
     
+    #All the list for kennis- and kanskaarten put in one list
     kansEnKennis = kanskaarten + kenniskaarten + kansSpeciaal
     
     strijdKaarten = [["Daag 1 speler uit. Het de uitgedaagde speler schat hoeveel global warming-termen ze kunnen opnoemen. Het tweede team zegt of ze dit kunnen overtreffen.   Als ze dat kunnen, proberen ze dat. Als dit ze lukt krijgt ieder 5 punten richting hun doel."],
@@ -153,5 +157,6 @@ def setup():
     ["Zet tussen 2 en 5 punten naar jouw doel in, kies voor even of oneven getallen en gooi met een dobbelsteen.   Als je de juiste soort gooit, worden je punten verdubbeld; anders ben je ze kwijt."]
     ]
     
+    #shuffles the lists
     shuffle(strijdKaarten)
     shuffle(kansEnKennis)

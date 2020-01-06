@@ -6,6 +6,7 @@ def draw(ant):
     
     a = kaartjes.kansEnKennis[0][-1]
     
+    #checks if the anwser is correct and says this on the screen with teh right anwser if the anwser was wrong.
     if ant == "wrong":
         text("Je hebt het verkeerde antwoord aangeklinkt! Het juiste antwoord is " + a,width/2-225,600,450,40)
     else:
@@ -24,6 +25,7 @@ def isMouseWithinSpace(x,y,w,h):
 def mousePressed(ant):
     page = "antwoorden"
     
+    #gives points to the right person and places the question at the bottom of the list. Also will give the turn to next person.
     if isMouseWithinSpace(40,height-150,100,120):
         page = "spelregels"
     

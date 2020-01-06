@@ -49,6 +49,7 @@ def draw():
     text("SURVIVAL OR THE LITTEST\nMENU",(width/2)-250,0,500,150)
     textSize(14)
     
+    #checks if it's a kenniskaart and then puts it on the screen in the right place
     if kaartjes.kansEnKennis[0] in kaartjes.kenniskaarten:
         fill(0)
         text(kaartjes.kansEnKennis[0][0],width/2-225,250,450,75)
@@ -81,7 +82,7 @@ def draw():
             i = i + 1
         
         
-    
+    #checks if it's a kanskaart and then puts it on the screen in the right place
     if kaartjes.kansEnKennis[0] in kaartjes.kanskaarten:
         fill(0)
         image(imgBack,1250,186,100,100)
@@ -91,7 +92,10 @@ def draw():
         text("Carbon footprint:\n" + str(kaartjes.kansEnKennis[0][1]),width/2-350,height/2+180,120,40)
         text("litpunten:\n" + str(kaartjes.kansEnKennis[0][2]),width/2+280,height/2+180,80,40)
     
+    #checks if it's a special kanskaart and then puts it on the screen in the right place.
     if kaartjes.kansEnKennis[0] in kaartjes.kansSpeciaal:
+        
+        #there are 2 different kind of special kanskaarten so this wil seperate those.
         if len(kaartjes.kansEnKennis[0]) < 4:
             
             j = 1
@@ -142,7 +146,13 @@ def isMouseWithinSpace(x,y,w,h):
     
 
 
-    
+#For the cards it checks which kind it is and then execute the proper actions.
+'''For kenniskaarten after clicking an anwser it wil go to the page antwoorden where the rest will take place.
+For kanskaarten this wil only have a return button to go back to menu page.
+For special kanskaarten it will do wat it has to do after this it wil go to the menu page or you have to press the return button to get to the menu page.
+Every time you go back the menu page the points will added to the right person and the turn will go to the next person.
+The top of the list will be removed and placed at the bottom of the list after the user pressed the return button
+'''    
 def mousePressed():
     global r1, g1, b1, r2, r3, r4, r5, b2, b3, b4, b5, g2, g3, g4, g5, pressed, dobbel
     

@@ -6,7 +6,6 @@ def setup():
     
     size(1600,900)
     
-    kaart = 0
     ant = "niets"
     page = "modus"
     mode = " "
@@ -27,9 +26,7 @@ def draw():
     
     background(255)
     image(backImg,0,0,1712,963)
-    
-    if kaart % len(kaartjes.kansEnKennis) == 0 and kaart != 0:
-        shuffle(kaartjes.kansEnKennis)
+
         
     if page == "modus":
         modus.draw()
@@ -38,12 +35,12 @@ def draw():
         menu.draw(mode)
         spelregel = 0
         
-        if mode == "verkorte versie" and personInfo.turnCount == 20:
+        if mode == "verkorte versie" and personInfo.turnCount == 56:
             page = "Eindpagina"
         
         j = 0
         while j < len(personInfo.playerList) and mode == "volledige versie":
-            if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 100:
+            if personInfo.playerList[j].wokeScore <= 0 or personInfo.playerList[j].litScore >= 75:
                 page = "Eindpagina"
             j += 1
     
@@ -83,7 +80,6 @@ def mousePressed():
         
     if page == "kaarten":
         page,ant = kaarten.mousePressed()
-        kaart +=1
         
     if page == "antwoorden":
         ant, page = antwoorden.mousePressed(ant)
