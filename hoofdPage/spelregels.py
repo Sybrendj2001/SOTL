@@ -48,7 +48,26 @@ def draw(spelregel):
         textAlign(CENTER,CENTER)
         image(imgBack,425,500,100,100)
         text("Dit is de terug knop. Met dit knopje ga je terug naar de hoofd pagina. Bij kaarten waar je keuze hoeft te maken zie je dit er gelijk bij staan. Bij de kaarten waar je een keuze moet maken komt deze knop te voorschijn nadat je een keuze hebt gemaakt.",575,500,600,100)
-
+    
+    
+    if spelregel == 3:
+        
+        
+        
+        fill(255)
+        rect(100,350,200,50)
+        textSize(25)
+        text("Start Timer", 175, 300)
+        
+        fill(255)
+        rect(100,475,200,50)
+        text("Assign", 175, 425)
+        
+        textAlign(LEFT,CENTER)
+        text("Als je op de witte rechthoek onder Start Timer klikt dan gaat er een timer lopen van 30 secondes. wanneer de 30 secondes zijn afgelopen zal je dit op het scherm zien",450,300,650,100)
+        text("Als je op de witte rechthoek onder Assign klikt dan krijg je een pop-up scherm met de vraag om het aan iemand te assignen. Hier vul je de speler die de strijd kaart heeft gewonnen.",450,425,650,100)
+        
+    
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
         return True
@@ -68,7 +87,10 @@ def mousePressed(spelregel):
         
     if isMouseWithinSpace(width-150,50,100,100) and spelregel == 2:
         page = "antwoorden"
-            
+    
+    if isMouseWithinSpace(width-150,50,100,100) and spelregel == 3:
+        page = "strijd"
+        
     return page
         
     
