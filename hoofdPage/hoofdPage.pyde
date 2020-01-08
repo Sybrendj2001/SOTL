@@ -20,7 +20,6 @@ def setup():
     strijd.setup()
     Eindpagina.setup()
     
-    
 def draw():
     global page, ant, mode, backImg, spelregel, kaart
     

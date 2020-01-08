@@ -118,24 +118,25 @@ def endStrijd():
     for i in personInfo.playerList:
         if i.name == personToGetCard:
             completed = True
+            kaartjes.strijdKaarten.remove(kaartjes.strijdKaarten[0])
+            personInfo.turnIncrement()
             i.strijdInv.append(whatToGet)
             setup()
     if completed == False:
         endStrijd()
 
-
 def cardGevolg():
-    x = random.randint(1,4)
+    x = random.randint(0,6)
+    y = random.randint(1,2)
     ans = ""
 
-    if x == 1:
-        ans = "plus5"
-    if x == 2:
-        ans = "min5"
-    if x == 3:
-        ans = "plus5"
-    if x == 4:
-        ans = "min5"
+    if x == 0:
+        return x
+    
+    if y == 1:
+        return "min" + str(x)
+    else:
+        return "plus" + str(x)
     return ans
 
 def givePlayerCard():
@@ -144,8 +145,6 @@ def givePlayerCard():
     personInfo[name].strijdInv[strijdInv.len() + 1] = cardGevolg()
     currentCard += 1
     page = "Menu"
-
-
 
 #add to playerinfo:
 #Inventory
