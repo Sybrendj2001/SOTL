@@ -2,7 +2,7 @@ import kaartjes, personInfo, random
 from datetime import datetime
 
 def setup():
-    global imgBack, currentTime, currentMs, timerOO, currentCard, cardDrawn, cardText, pressed, startTime, timerDone, personToGetCard
+    global imgBack, currentTime, currentMs, timerOO, currentCard, cardDrawn, cardText, pressed, startTime, timerDone, personToGetCard, imgBook
 
     cardText = ""
     personToGetCard = ""
@@ -18,16 +18,18 @@ def setup():
     timerDone = False
     
     imgBack = loadImage("back.png")
-
+    imgBook = loadImage("book1.png")
+    
 def draw():
-    global cardDrawn, cardText, timerOO, startTime, timerDone
+    global cardDrawn, cardText, timerOO, startTime, timerDone, imgBook
     textAlign(CENTER,CENTER)
     #Images for the page
     imgStrijd = loadImage("achterkant_strijd2.jpeg")
     imgCard = loadImage("strijd.jpeg")
     image(imgStrijd,40,302,200,132)
     image(imgCard,width/2-400,height/2-264,800,528)
-
+    image(imgBook,40,height-150,100,120)
+    
     #Timer Button
     fill(255)
     rect(1300,200,200,50)
@@ -108,6 +110,10 @@ def mousePressed():
         endStrijd()
         page = "menu"
         pressed = 1
+    
+    if isMouseWithinSpace(40,height-150,100,120):
+        page = "spelregels"
+        
     pressed = 0
     return page
 

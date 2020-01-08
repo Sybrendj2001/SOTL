@@ -24,18 +24,25 @@ def draw(spelregel):
         text("SPELDOEL\n",width/2-50,50,100,50)
         text("Er zijn 2 speldoelen omdat er ook 2 verschillende groepen zijn(woke en lit). De bedoeling van de lit mensen is om zo snel mogelijk bij de 75 punten te komen.De woke mensen proberen juist van 75 naar de 0 te komen.",width/2-375,100,750,100)
         
-        
-        
-        image(imgKans,100,300,200,132)
-        image(imgStrijd,100,452,200,132)
-        image(imgCon,100,604,100,100)
-        image(imgStop,100,724,100,100)
+        image(imgKans,100,250,200,132)
+        image(imgStrijd,100,402,200,132)
+        image(imgCon,100,554,100,100)
+        image(imgStop,100,674,100,100)
         
         textAlign(LEFT,TOP)
-        text("Dit geeft kans/kenniskaarten weer.",450,366,650,40)
-        text("Dit geeft strijdkaarten weer.",450,518,650,40)
-        text("Dit zorgt ervoor dat de volgende speler aan de beurt komt als je geen kaart hoeft te pakken.",450,653,850,40)
-        text("De stop knop zorgt ervoor dat je vervroegd stopt met het spel als je eerder klaar bent.",450,774,850,40)
+        text("Dit geeft kans/kenniskaarten weer.",450,316,650,40)
+        text("Dit geeft strijdkaarten weer.",450,468,650,40)
+        text("Dit zorgt ervoor dat de volgende speler aan de beurt komt als je geen kaart hoeft te pakken.",450,603,850,40)
+        text("De stop knop zorgt ervoor dat je vervroegd stopt met het spel als je eerder klaar bent.",450,724,850,40)
+        
+        textSize(20)
+        fill(19, 249, 19)
+        rect(120,834, 60, 30) # Will later be a picture
+        textAlign(CENTER,CENTER)
+        text("Inventory", 100,794,100,40)
+        textSize(18)
+        fill(255)
+        text("De inventory knop laat alle stijdkaarten zien die de speler heeft. En als je op de kaarten klikt kan je de gevolgen aan iemand geven.",450,799,850,60)
     
     if spelregel == 1 or spelregel == 2:
         fill(255)
@@ -48,7 +55,30 @@ def draw(spelregel):
         textAlign(CENTER,CENTER)
         image(imgBack,425,500,100,100)
         text("Dit is de terug knop. Met dit knopje ga je terug naar de hoofd pagina. Bij kaarten waar je keuze hoeft te maken zie je dit er gelijk bij staan. Bij de kaarten waar je een keuze moet maken komt deze knop te voorschijn nadat je een keuze hebt gemaakt.",575,500,600,100)
-
+    
+    if spelregel == 3:
+        textAlign(LEFT,CENTER)
+        textSize(18)
+        text("Een strijdkaart is een kaart die in je inventory komt. Deze inventory kan je als je aan de beurt bent in de menu aanvragen door op een knop te drukken. Dan kan je gevolgen van een strijdkaart aan iemand geven.",width/2-325,150,650,100)
+        
+        fill(255)
+        rect(100,350,200,50)
+        textSize(25)
+        textAlign(CENTER,CENTER)
+        text("Start Timer", 100, 300, 200, 50)
+        textAlign(LEFT,CENTER)
+        textSize(16)
+        text("Met deze knop kan je de timer starten. De timer zal je nodig hebben bij sommige strijdkaart opdrachten. De timer staat op 30 secondes.",430,310,650,80)
+        
+        fill(255)
+        rect(100,500,200,50)
+        textSize(25)
+        textAlign(CENTER,CENTER)
+        text("Assign", 100, 450, 200, 50)
+        textAlign(LEFT,CENTER)
+        textSize(16)
+        text("Met deze knop geef je het aan degene die de kaart heeft gewonnen/gekregen. Nadat je de persoon hebt ingevuld ga je meteen door naar het menu scherm.",430,460,650,80)
+    
 def isMouseWithinSpace(x,y,w,h):
     if (x < mouseX < x + w and y < mouseY < y + h):
         return True
@@ -68,7 +98,10 @@ def mousePressed(spelregel):
         
     if isMouseWithinSpace(width-150,50,100,100) and spelregel == 2:
         page = "antwoorden"
-            
+    
+    if isMouseWithinSpace(width-150,50,100,100) and spelregel == 3:
+        page = "strijd"
+    
     return page
         
     
